@@ -1,6 +1,6 @@
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
-import smtplib
+import smtplib,time
 
 class Emailer(object):
     def __init__(self):
@@ -18,6 +18,14 @@ class Emailer(object):
 
         self.server = smtplib.SMTP("localhost")
         self.server.sendmail(sdAddr, toAddr, text)
+
+    def getUserName(self):
+        return str(os.environ['USER'])
+
+    def getTimeStr(self):
+        curTime=(time.strftime("%H:%M:%S"))
+        curDate=(time.strftime("%d/%m/%Y"))
+        return curDate+" ; "+curTime 
 
     def end():
         self.server.quit()
